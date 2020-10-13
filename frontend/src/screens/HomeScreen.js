@@ -14,7 +14,7 @@ import {Header} from '../components/Header';
 export default function HomeScreen({navigation}) {
   return (
     <View>
-      <Header navigation={navigation} />
+      <Header navigation={navigation} name={'Home'} />
     </View>
   );
 }

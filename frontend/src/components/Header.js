@@ -17,7 +17,7 @@ const InfoIcon = (props) => <Icon {...props} name="info" />;
 
 const LogoutIcon = (props) => <Icon {...props} name="log-out" />;
 
-export const Header = ({navigation}) => {
+export const Header = ({navigation, name}) => {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -55,7 +55,7 @@ export const Header = ({navigation}) => {
     <Layout style={styles.container} level="1">
       <TopNavigation
         alignment="center"
-        title="Home Automation"
+        title={name}
         //subtitle="Subtitle"
         accessoryLeft={renderBackAction}
         accessoryRight={renderRightActions}
