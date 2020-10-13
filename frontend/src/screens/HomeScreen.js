@@ -9,24 +9,12 @@ import {
 } from '@ui-kitten/components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
+import {Header} from '../components/Header';
+
 export default function HomeScreen({navigation}) {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <KeyboardAwareScrollView>
-        <View style={styles.headerContainer}>
-          <Text category="h3">Home</Text>
-        </View>
-        <View>
-          <Text style={styles.body} category="h3">
-            No devices added !!
-          </Text>
-        </View>
-      </KeyboardAwareScrollView>
+    <View>
+      <Header navigation={navigation} />
     </View>
   );
 }

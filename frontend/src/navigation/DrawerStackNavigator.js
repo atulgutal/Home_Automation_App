@@ -13,7 +13,7 @@ export default function DrawerNavigator() {
       <DrawerStack.Screen
         name="home"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{title: 'Home'}}
       />
     </DrawerStack.Navigator>
   );
