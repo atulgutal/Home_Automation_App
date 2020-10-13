@@ -17,6 +17,8 @@ const InfoIcon = (props) => <Icon {...props} name="info" />;
 
 const LogoutIcon = (props) => <Icon {...props} name="log-out" />;
 
+const AddIcon = (props) => <Icon {...props} name="plus-outline" />;
+
 export const Header = ({navigation, name}) => {
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -29,18 +31,34 @@ export const Header = ({navigation, name}) => {
     <TopNavigationAction icon={MenuIcon} onPress={toggleMenu} />
   );
 
-  const renderRightActions = () => (
-    <React.Fragment>
-      {/* <TopNavigationAction icon={EditIcon} /> */}
-      <OverflowMenu
-        anchor={renderMenuAction}
-        visible={menuVisible}
-        onBackdropPress={toggleMenu}>
-        <MenuItem accessoryLeft={InfoIcon} title="About" />
-        <MenuItem accessoryLeft={LogoutIcon} title="Logout" />
-      </OverflowMenu>
-    </React.Fragment>
-  );
+  const renderRightActions = () => {
+    switch (name) {
+      case 'Home':
+        return (
+          <React.Fragment>
+            <OverflowMenu
+              anchor={renderMenuAction}
+              visible={menuVisible}
+              onBackdropPress={toggleMenu}>
+              <MenuItem accessoryLeft={InfoIcon} title="About" />
+              <MenuItem accessoryLeft={LogoutIcon} title="Logout" />
+            </OverflowMenu>
+          </React.Fragment>
+        );
+      case 'Devices':
+        return (
+          <React.Fragment>
+            <MenuItem accessoryRight={AddIcon} />
+          </React.Fragment>
+        );
+      case 'Reminders':
+        return (
+          <React.Fragment>
+            <MenuItem accessoryRight={AddIcon} />
+          </React.Fragment>
+        );
+    }
+  };
 
   const renderBackAction = () => (
     <React.Fragment>

@@ -3,17 +3,13 @@ import {StyleSheet, View} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
+import {Header} from '../components/Header';
+
 export default function RemindersScreen({navigation}) {
   return (
-    <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <KeyboardAwareScrollView>
-        <View style={styles.headerContainer}>
-          <Text style={styles.title} category="h1">
-            Reminders
-          </Text>
-        </View>
-      </KeyboardAwareScrollView>
-    </Layout>
+    <View>
+      <Header navigation={navigation} name={'Reminders'} />
+    </View>
   );
 }
 
