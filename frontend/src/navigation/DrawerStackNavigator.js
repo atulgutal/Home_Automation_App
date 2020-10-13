@@ -18,10 +18,15 @@ import {
 
 import HomeScreen from '../screens/HomeScreen';
 import DevicesScreen from '../screens/DevicesScreen';
+import ContactScreen from '../screens/ContactScreen';
 
 const DrawerStack = createDrawerNavigator();
 
 const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
+
+const DeviceIcon = (props) => <Icon {...props} name="smartphone-outline" />;
+
+const ContactIcon = (props) => <Icon {...props} name="email-outline" />;
 
 const Header = (props) => (
   <React.Fragment>
@@ -42,7 +47,8 @@ export const DrawerContent = ({navigation, state}) => {
       selectedIndex={selectedIndex}
       onSelect={(index) => setSelectedIndex(index)}>
       <DrawerItem title="Home" accessoryLeft={HomeIcon} />
-      <DrawerItem title="Device" accessoryLeft={HomeIcon} />
+      <DrawerItem title="Device" accessoryLeft={DeviceIcon} />
+      <DrawerItem title="Contact" accessoryLeft={ContactIcon} />
     </Drawer>
   );
 };
@@ -61,6 +67,11 @@ export default function DrawerNavigator() {
         name="device"
         component={DevicesScreen}
         options={{title: 'Device'}}
+      />
+      <DrawerStack.Screen
+        name="contact"
+        component={ContactScreen}
+        options={{title: 'Contact'}}
       />
     </DrawerStack.Navigator>
   );
