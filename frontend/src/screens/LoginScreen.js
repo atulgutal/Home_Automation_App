@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
   ApplicationProvider,
@@ -9,8 +9,10 @@ import {
   withStyles,
 } from '@ui-kitten/components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AuthContext} from '../Utils/Context';
 
 export default function LoginScreen({navigation}) {
+  const {signIn} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -53,10 +55,12 @@ export default function LoginScreen({navigation}) {
             value={password}
             onChangeText={(nextValue) => setPassword(nextValue)}
           />
-          <Button style={{marginTop: 20}} onPress={onSignInButtonPress}>
+          <Button
+            style={{marginTop: 20}}
+            onPress={() => signIn(email, password)}>
             Sign In
           </Button>
-          <Text onPress={onSignUpButtonPress} style={{marginTop: 10}}>
+          <Text onPress={() => signIn()} style={{marginTop: 10}}>
             Don't have an account? <Text>Sign Up</Text>
           </Text>
         </View>
