@@ -20,7 +20,7 @@ export default function RootNavigator({navigation}) {
 
   const authContext = useMemo(() => {
     return {
-      signIn: (email, password) => {
+      onSignInButtonPress: (email, password) => {
         //console.log(email);
         // if (email === 'admin' && password === '12345') {
         //   console.log('success');
@@ -31,7 +31,8 @@ export default function RootNavigator({navigation}) {
         setUserToken('asdf');
       },
       signUp: () => {
-        setUserToken('asdf');
+        //setUserToken('asdf');
+        //navigation.navigate('AuthStack', {screen: 'register'});
       },
       signOut: () => {
         setUserToken(null);

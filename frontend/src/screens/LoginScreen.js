@@ -12,23 +12,23 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AuthContext} from '../Utils/Context';
 
 export default function LoginScreen({navigation}) {
-  const {signIn} = useContext(AuthContext);
+  const {onSignInButtonPress} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSignInButtonPress = () => {
-    //navigation && navigation.goBack();
-    console.log(email);
-    navigation.navigate('HomeStack', {screen: 'home'});
+  // const onSignInButtonPress = () => {
+  //   navigation && navigation.goBack();
+  //   console.log(email);
+  //   navigation.navigate('HomeStack', {screen: 'home'});
 
-    console.log(password);
-    // if (email === 'admin' && password === '12345') {
-    //   console.log('success');
-    //   navigation.navigate('home');
-    // } else {
-    //   console.log('error');
-    // }
-  };
+  //   console.log(password);
+  //   if (email === 'admin' && password === '12345') {
+  //     console.log('success');
+  //     navigation.navigate('home');
+  //   } else {
+  //     console.log('error');
+  //   }
+  // };
 
   const onSignUpButtonPress = () => {
     navigation.navigate('register');
@@ -57,10 +57,10 @@ export default function LoginScreen({navigation}) {
           />
           <Button
             style={{marginTop: 20}}
-            onPress={() => signIn(email, password)}>
+            onPress={() => onSignInButtonPress(email, password)}>
             Sign In
           </Button>
-          <Text onPress={() => signIn()} style={{marginTop: 10}}>
+          <Text onPress={onSignUpButtonPress} style={{marginTop: 10}}>
             Don't have an account? <Text>Sign Up</Text>
           </Text>
         </View>

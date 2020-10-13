@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {Button, View, StyleSheet, ImageBackground} from 'react-native';
 import {
   createDrawerNavigator,
@@ -21,6 +21,10 @@ import DevicesScreen from '../screens/DevicesScreen';
 import ContactScreen from '../screens/ContactScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RemindersScreen from '../screens/RemindersScreen';
+import AddDeviceScreen from '../screens/AddDeviceScreen';
+import AddReminderScreen from '../screens/AddReminderScreen';
+
+import {AuthContext} from '../Utils/Context';
 
 const DrawerStack = createDrawerNavigator();
 
@@ -33,6 +37,8 @@ const DeviceIcon = (props) => <Icon {...props} name="smartphone-outline" />;
 const ReminderIcon = (props) => <Icon {...props} name="clock-outline" />;
 
 const ContactIcon = (props) => <Icon {...props} name="email-outline" />;
+
+const LogoutIcon = (props) => <Icon {...props} name="log-out-outline" />;
 
 const Header = (props) => (
   <React.Fragment>
@@ -52,6 +58,7 @@ const Header = (props) => (
 
 export const DrawerContent = ({navigation, state}) => {
   const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0));
+  const {signOut} = useContext(AuthContext);
 
   return (
     <Drawer
@@ -63,6 +70,11 @@ export const DrawerContent = ({navigation, state}) => {
       <DrawerItem title="Devices" accessoryLeft={DeviceIcon} />
       <DrawerItem title="Reminders" accessoryLeft={ReminderIcon} />
       <DrawerItem title="Contact" accessoryLeft={ContactIcon} />
+      <DrawerItem
+        title="Logout"
+        accessoryLeft={LogoutIcon}
+        onPress={() => signOut()}
+      />
     </Drawer>
   );
 };
@@ -77,6 +89,8 @@ export default function DrawerNavigator() {
       <DrawerStack.Screen name="devices" component={DevicesScreen} />
       <DrawerStack.Screen name="reminders" component={RemindersScreen} />
       <DrawerStack.Screen name="contact" component={ContactScreen} />
+      <DrawerStack.Screen name="addDevice" component={AddDeviceScreen} />
+      <DrawerStack.Screen name="addReminder" component={AddReminderScreen} />
     </DrawerStack.Navigator>
   );
 }

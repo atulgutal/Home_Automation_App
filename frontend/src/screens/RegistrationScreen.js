@@ -1,12 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {
-  ApplicationProvider,
-  Layout,
-  Button,
-  Text,
-  Input,
-} from '@ui-kitten/components';
+import {Layout, Button, Text, Input} from '@ui-kitten/components';
 
 export default function RegistrationScreen({navigation}) {
   const [name, setName] = useState('');

@@ -48,15 +48,23 @@ export const Header = ({navigation, name}) => {
       case 'Devices':
         return (
           <React.Fragment>
-            <MenuItem accessoryRight={AddIcon} />
+            <MenuItem
+              accessoryRight={AddIcon}
+              onPress={() => navigation.navigate('addDevice')}
+            />
           </React.Fragment>
         );
       case 'Reminders':
         return (
           <React.Fragment>
-            <MenuItem accessoryRight={AddIcon} />
+            <MenuItem
+              accessoryRight={AddIcon}
+              onPress={() => navigation.navigate('addReminder')}
+            />
           </React.Fragment>
         );
+      default:
+        return <React.Fragment></React.Fragment>;
     }
   };
 
@@ -84,7 +92,6 @@ export const Header = ({navigation, name}) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
     paddingTop: 40,
   },
 });
