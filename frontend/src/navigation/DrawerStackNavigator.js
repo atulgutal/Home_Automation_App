@@ -19,10 +19,13 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import DevicesScreen from '../screens/DevicesScreen';
 import ContactScreen from '../screens/ContactScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const DrawerStack = createDrawerNavigator();
 
 const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
+
+const ProfileIcon = (props) => <Icon {...props} name="person-outline" />;
 
 const DeviceIcon = (props) => <Icon {...props} name="smartphone-outline" />;
 
@@ -39,14 +42,15 @@ const Header = (props) => (
 );
 
 export const DrawerContent = ({navigation, state}) => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0));
 
   return (
     <Drawer
       header={Header}
-      selectedIndex={selectedIndex}
-      onSelect={(index) => setSelectedIndex(index)}>
+      selectedIndex={new IndexPath(state.index)}
+      onSelect={(index) => navigation.navigate(state.routeNames[index.row])}>
       <DrawerItem title="Home" accessoryLeft={HomeIcon} />
+      <DrawerItem title="Profile" accessoryLeft={ProfileIcon} />
       <DrawerItem title="Device" accessoryLeft={DeviceIcon} />
       <DrawerItem title="Contact" accessoryLeft={ContactIcon} />
     </Drawer>
@@ -58,21 +62,10 @@ export default function DrawerNavigator() {
     <DrawerStack.Navigator
       initialRouteName="home"
       drawerContent={(props) => <DrawerContent {...props} />}>
-      <DrawerStack.Screen
-        name="home"
-        component={HomeScreen}
-        options={{title: 'Home'}}
-      />
-      <DrawerStack.Screen
-        name="device"
-        component={DevicesScreen}
-        options={{title: 'Device'}}
-      />
-      <DrawerStack.Screen
-        name="contact"
-        component={ContactScreen}
-        options={{title: 'Contact'}}
-      />
+      <DrawerStack.Screen name="home" component={HomeScreen} />
+      <DrawerStack.Screen name="profile" component={ProfileScreen} />
+      <DrawerStack.Screen name="device" component={DevicesScreen} />
+      <DrawerStack.Screen name="contact" component={ContactScreen} />
     </DrawerStack.Navigator>
   );
 }
