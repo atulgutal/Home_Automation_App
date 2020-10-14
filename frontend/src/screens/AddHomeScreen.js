@@ -2,13 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Divider} from '@ui-kitten/components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {
-  ApplicationProvider,
-  Layout,
-  Button,
-  Text,
-  Input,
-} from '@ui-kitten/components';
+import {Layout, Button, Text, Input} from '@ui-kitten/components';
 
 import {Header} from '../components/Header';
 
@@ -20,15 +14,19 @@ export default function AddHomeScreen({navigation}) {
   const [country, setCountry] = useState('');
   const [zipcode, setZipcode] = useState('');
 
-  const onAddHomeButtonPress = () => {
-    console.log(name);
-    console.log(address);
-    console.log(city);
-    console.log(state);
-    console.log(country);
-    console.log(zipcode);
-    navigation.navigate('addUser');
-  };
+  //console.log('add user');
+
+  //   const onAddHomeButtonPress = () => {
+  //     console.log(name);
+  //     console.log(address);
+  //     console.log(city);
+  //     console.log(state);
+  //     console.log(country);
+  //     console.log(zipcode);
+  //     console.log('onAddHomeButtonPress');
+  //     navigation.navigate('addUser', (initialParams = {mode: 'signup'}));
+  //     navigation.navigate('DrawerStack', {screen: 'addUser'});
+  //   };
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -80,7 +78,9 @@ export default function AddHomeScreen({navigation}) {
               value={zipcode}
               onChangeText={setZipcode}
             />
-            <Button style={{marginTop: 20}} onPress={onAddHomeButtonPress}>
+            <Button
+              style={{marginTop: 20}}
+              onPress={() => navigation.navigate('addUser')}>
               Add Home
             </Button>
           </Layout>

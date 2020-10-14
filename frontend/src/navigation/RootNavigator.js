@@ -34,6 +34,7 @@ export default function RootNavigator({navigation}) {
         //setUserToken('asdf');
         //navigation.navigate('AuthStack', {screen: 'register'});
         setUserToken('signup');
+        //navigation.navigate('DrawerStack', {screen: 'addHome'});
       },
       signOut: () => {
         setUserToken(null);
@@ -50,7 +51,6 @@ export default function RootNavigator({navigation}) {
               name={'DrawerStack'}
               component={DrawerStackNavigator}
               options={{headerShown: false}}
-              initialParams={{mode: userToken}}
             />
           ) : (
             <RootStack.Screen
