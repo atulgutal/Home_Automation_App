@@ -1,28 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Layout, Button, Text, Input} from '@ui-kitten/components';
 
+import {AuthContext} from '../Utils/Context';
+
 export default function RegistrationScreen({navigation}) {
+  const {onSignUpButtonPress} = useContext(AuthContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSignInButtonPress = () => {
-    //navigation && navigation.goBack();
-    console.log(email);
-    console.log(password);
-
-    // if (name.length !== 0 && email.length !== 0 && password.length !== 0) {
-    //   console.log('success');
-    navigation.navigate('addhome');
-    // } else {
-    //   console.log('error');
-    // }
-  };
-
-  const onSignUpButtonPress = () => {
-    navigation.navigate('register');
-  };
+  // const onSignUpButtonPress = () => {
+  //   navigation.navigate('addHome');
+  //   navigation.navigate('RootStack', {
+  //     screen: 'DrawerStack',
+  //     params: {
+  //       screen: 'addHome',
+  //     },
+  //   });
+  // };
 
   return (
     <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -50,7 +46,9 @@ export default function RegistrationScreen({navigation}) {
           value={password}
           onChangeText={setPassword}
         />
-        <Button style={{marginTop: 20}} onPress={onSignInButtonPress}>
+        <Button
+          style={{marginTop: 20}}
+          onPress={() => onSignUpButtonPress(name, email, password)}>
           Sign Up
         </Button>
       </View>

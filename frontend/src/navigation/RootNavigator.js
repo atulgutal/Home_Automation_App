@@ -28,11 +28,12 @@ export default function RootNavigator({navigation}) {
         // } else {
         //   console.log('error');
         // }
-        setUserToken('asdf');
+        setUserToken('signin');
       },
-      signUp: () => {
+      onSignUpButtonPress: () => {
         //setUserToken('asdf');
         //navigation.navigate('AuthStack', {screen: 'register'});
+        setUserToken('signup');
       },
       signOut: () => {
         setUserToken(null);
@@ -49,6 +50,7 @@ export default function RootNavigator({navigation}) {
               name={'DrawerStack'}
               component={DrawerStackNavigator}
               options={{headerShown: false}}
+              initialParams={{mode: userToken}}
             />
           ) : (
             <RootStack.Screen

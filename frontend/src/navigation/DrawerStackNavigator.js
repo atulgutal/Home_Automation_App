@@ -23,8 +23,10 @@ import ProfileScreen from '../screens/ProfileScreen';
 import RemindersScreen from '../screens/RemindersScreen';
 import AddDeviceScreen from '../screens/AddDeviceScreen';
 import AddReminderScreen from '../screens/AddReminderScreen';
+import AddHomeScreen from '../screens/AddHomeScreen';
 
 import {AuthContext} from '../Utils/Context';
+import AddUserScreen from '../screens/AddUserScreen';
 
 const DrawerStack = createDrawerNavigator();
 
@@ -79,20 +81,33 @@ export const DrawerContent = ({navigation, state}) => {
   );
 };
 
-export default function DrawerNavigator() {
-  return (
-    <DrawerStack.Navigator
-      initialRouteName="home"
-      drawerContent={(props) => <DrawerContent {...props} />}>
-      <DrawerStack.Screen name="home" component={HomeScreen} />
-      <DrawerStack.Screen name="profile" component={ProfileScreen} />
-      <DrawerStack.Screen name="devices" component={DevicesScreen} />
-      <DrawerStack.Screen name="reminders" component={RemindersScreen} />
-      <DrawerStack.Screen name="contact" component={ContactScreen} />
-      <DrawerStack.Screen name="addDevice" component={AddDeviceScreen} />
-      <DrawerStack.Screen name="addReminder" component={AddReminderScreen} />
-    </DrawerStack.Navigator>
-  );
+export default function DrawerStackNavigator({route}) {
+  if (route.params.mode === 'signin') {
+    return (
+      <DrawerStack.Navigator
+        initialRouteName="home"
+        drawerContent={(props) => <DrawerContent {...props} />}>
+        <DrawerStack.Screen name="home" component={HomeScreen} />
+        <DrawerStack.Screen name="profile" component={ProfileScreen} />
+        <DrawerStack.Screen name="devices" component={DevicesScreen} />
+        <DrawerStack.Screen name="reminders" component={RemindersScreen} />
+        <DrawerStack.Screen name="contact" component={ContactScreen} />
+        <DrawerStack.Screen name="addDevice" component={AddDeviceScreen} />
+        <DrawerStack.Screen name="addReminder" component={AddReminderScreen} />
+        <DrawerStack.Screen name="addHome" component={AddHomeScreen} />
+        <DrawerStack.Screen name="addUser" component={AddUserScreen} />
+      </DrawerStack.Navigator>
+    );
+  } else {
+    return (
+      <DrawerStack.Navigator
+        initialRouteName="addHome"
+        drawerContent={(props) => <DrawerContent {...props} />}>
+        <DrawerStack.Screen name="addHome" component={AddHomeScreen} />
+        <DrawerStack.Screen name="addUser" component={AddUserScreen} />
+      </DrawerStack.Navigator>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
