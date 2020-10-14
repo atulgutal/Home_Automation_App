@@ -9,6 +9,10 @@ import {
 } from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
 
+const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
+
+const ProfileIcon = (props) => <Icon {...props} name="person-outline" />;
+
 const menuIcon = (props) => <Icon {...props} name="menu-outline" />;
 
 const MenuIcon = (props) => <Icon {...props} name="more-vertical" />;
@@ -40,8 +44,16 @@ export const Header = ({navigation, name}) => {
               anchor={renderMenuAction}
               visible={menuVisible}
               onBackdropPress={toggleMenu}>
-              <MenuItem accessoryLeft={InfoIcon} title="About" />
-              <MenuItem accessoryLeft={LogoutIcon} title="Logout" />
+              <MenuItem
+                accessoryLeft={HomeIcon}
+                title="Add Home"
+                onPress={() => navigation.navigate('addHome')}
+              />
+              <MenuItem
+                accessoryLeft={ProfileIcon}
+                title="Add Friends"
+                onPress={() => navigation.navigate('addUser')}
+              />
             </OverflowMenu>
           </React.Fragment>
         );

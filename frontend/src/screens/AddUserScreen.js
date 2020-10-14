@@ -11,21 +11,17 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Header} from '../components/Header';
-import {SystemContext} from '../Utils/Context';
 
 const AddIcon = (props) => <Icon {...props} name="plus-outline" />;
 
 export default function AddUserScreen({navigation}) {
   const [emails, setEmails] = useState(['']);
-  //console.log('add home');
-  const {modeSet} = useContext(SystemContext);
 
   //   const onAddUserButtonPress = () => {
   //     navigation.navigate('home', (initialParams = {mode: 'signin'}));
   //   };
 
   const handleClick = () => {
-    //console.log('hii');
     setEmails([...emails, '']);
   };
 
@@ -66,7 +62,7 @@ export default function AddUserScreen({navigation}) {
               onChangeText={() => {
                 setEmails([...emails, email]);
               }}
-              onPress={() => modeSet()}>
+              onPress={() => navigation.navigate('home')}>
               Add User
             </Button>
           </Layout>
